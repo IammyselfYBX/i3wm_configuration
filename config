@@ -189,9 +189,9 @@ mode "resize" {
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command i3status
-}
+#bar {
+#        status_command i3status
+#}
 
 # backgrounds
 exec --no-startup-id feh --bg-fill /home/tony/.config/i3/backgrounds/little.png
@@ -199,7 +199,7 @@ exec --no-startup-id feh --bg-fill /home/tony/.config/i3/backgrounds/little.png
 exec --no-startup-id compton --conf ~/.config/compton/compton
 
 # key
-exec_always xmodmap ~/.Xmodmap
+# exec_always xmodmap ~/.Xmodmap
 
 
 # windows maxsize minsize
@@ -224,6 +224,8 @@ exec --no-startup-id ibus-daemon --xim -d -r
 # begin run
 exec_always --no-startup-id /bin/sh ~/.config/i3/scripts/tap-to-click.sh
 exec_always --no-startup-id /bin/sh ~/.config/i3/scripts/inverse-scroll.sh
+# exec_always --no-startup-id /bin/gthumb /home/tony/Pictures/课表.png
+ exec_always --no-startup-id /bin/gnome-todo
 
 # ranger
 bindsym $mod+Shift+t exec alacritty -e ranger
@@ -249,7 +251,7 @@ bindsym XF86AudioMute exec amixer set Master toggle
 
 # 黑屏、睡眠、断电时间分别设为6000s，8000s，9000s，也可以只写前一个，不必三个都写
 # exec --no-startup-id xset dpms 6000 8000 9000
-exec --no-startup-id xset dpms 12000
+# exec --no-startup-id xset dpms 24000
 # 锁屏
 # https://github.com/pavanjadhaw/betterlockscreen
 #    Note: Make sure your system has all dependencies satisfied
@@ -257,13 +259,17 @@ exec --no-startup-id xset dpms 12000
 #    i3lock-color - i3lock fork with additional features( >= 2.11-c )
 #    imagemagick - To apply effects to images
 #    xdpyinfo, xrandr, bc and feh - To find screen resolution, set custom blur level and wallpaper handling.
-
 bindsym $mod+x exec "betterlockscreen -u ~/.config/i3/lock/ante.jpg -l -b 1 dim"
 
+# 立即关闭屏幕
+bindsym ctrl+Shift+l exec "/home/tony/.local/bin/screen_off" 
 
-# 
+# 常用应用的快捷键
 bindsym $mod+c exec google-chrome-stable
 
+
+# 使用polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 
 
